@@ -37,7 +37,7 @@ namespace Detrav.Teroniffer
             this.parent = parent;
             parent.onPacketArrival += parent_onPacketArrival;
             parent.onTick += parent_onTick;
-            
+            show();
         }
 
         void parent_onTick(object sender, EventArgs e)
@@ -77,6 +77,5 @@ namespace Detrav.Teroniffer
                 return ba;
             }
         }
-
     }
 }
