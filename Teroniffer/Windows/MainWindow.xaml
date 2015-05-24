@@ -4,7 +4,7 @@
         x:Class="Detrav.Teroniffer.Windows.MainWindow"
         Title="Teroniffer"
         Height="350"
-        Width="525">
+        Width="725" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />

@@ -29,6 +29,13 @@ namespace Detrav.Teroniffer.Windows
         public MainWindow()
         {
             InitializeComponent();
+            ((buttonNew as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.new.png");
+            ((buttonSave as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.save.png");
+            ((buttonCopy as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.bug.png");
+            ((buttonEdit as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.edit.png");
+            ((buttonWhite as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.white.png");
+            ((buttonBlack as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.black.png");
+            ((buttonSearch as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.search.png");
         }
 
         List<DataPacket> packets = new List<DataPacket>();
@@ -327,6 +334,29 @@ namespace Detrav.Teroniffer.Windows
         private void buttonCopy_Click(object sender, RoutedEventArgs e)
         {
             Clipboard.SetText(textBlockPacket.Text);
+        }
+        public bool close = false;
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (close) return;
+            Hide();
+            e.Cancel = true;
+        }
+
+        public BitmapImage ToImage(string filename)
+        {
+            System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
+            using (System.IO.Stream resFilestream = a.GetManifestResourceStream(filename))
+            {
+                if (resFilestream == null) return null;
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad; // here
+                image.StreamSource = resFilestream;
+                image.EndInit();
+                return image;
+
+            }
         }
     }
 }

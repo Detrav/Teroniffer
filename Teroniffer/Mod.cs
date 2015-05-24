@@ -11,12 +11,11 @@ namespace Detrav.Teroniffer
     class Mod : ITeraMod
     {
         MainWindow window;
-        bool visable = false;
         ITeraClient parent;
 
         public void changeVisible()
         {
-            if (visable)
+            if (window.IsVisible)
                 hide();
             else
                 show();
@@ -30,7 +29,6 @@ namespace Detrav.Teroniffer
         public void hide()
         {
             window.Hide();
-            visable = false;
         }
 
         public void load(ITeraClient parent)
@@ -48,17 +46,17 @@ namespace Detrav.Teroniffer
         public void show()
         {
             window.Show();
-            visable = true;
         }
 
         public void unLoad()
         {
+            window.close = true;
             window.Close();
         }
 
         public static byte[] getModIcon()
         {
-            return extractResource("Detrav.Teroniffer.Icon.png");
+            return extractResource("Detrav.Teroniffer.Icon.jpg");
         }
 
         public static byte[] extractResource(string filename)
