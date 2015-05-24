@@ -33,9 +33,16 @@ namespace Detrav.Teroniffer
 
         public void load(ITeraClient parent)
         {
+            window = new MainWindow();
             this.parent = parent;
             parent.onPacketArrival += parent_onPacketArrival;
-            window = new MainWindow();
+            parent.onTick += parent_onTick;
+            
+        }
+
+        void parent_onTick(object sender, EventArgs e)
+        {
+            window.doEvents();
         }
 
         void parent_onPacketArrival(object sender, TeraApi.Events.PacketArrivalEventArgs e)
