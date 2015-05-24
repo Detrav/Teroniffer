@@ -1,0 +1,211 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:TeraApi="clr-namespace:Detrav.TeraApi;assembly=TeraApi"
+        x:Class="Detrav.Teroniffer.Windows.MainWindow"
+        Title="Teroniffer"
+        Height="350"
+        Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TabControl x:Name="tabControl"
+                        Grid.Column="0"
+                        MinWidth="200">
+                <TabItem Header="Данные">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0"
+                                    Orientation="Horizontal">
+                            <Label Content="От" />
+                            <TextBox x:Name="textBoxSkip"
+                                     Width="60"
+                                     HorizontalContentAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Text="0" />
+                            <Label Content="Кол." />
+                            <TextBox x:Name="textBoxCount"
+                                     Width="60"
+                                     HorizontalContentAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Text="1000" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="1"
+                                    Orientation="Horizontal">
+                            <Button x:Name="buttonPrev"
+                                    Margin="5 0"
+                                    Click="buttonPrev_Click"
+                                    Content="Пред" />
+                            <Button x:Name="buttonRefresh"
+                                    Margin="5 0"
+                                    Click="buttonRefresh_Click"
+                                    Content="Обновить" />
+                            <Button x:Name="buttonNext"
+                                    Margin="5 0"
+                                    Click="buttonNext_Click"
+                                    Content="След" />
+                            <CheckBox x:Name="checkBoxForTimer"
+                                      Content="Таймер?" />
+                        </StackPanel>
+                        <DataGrid x:Name="dataGrid"
+                                  Grid.Row="2"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                                  CanUserSortColumns="True"
+                                  IsReadOnly="True"
+                                  AutoGenerateColumns="False"
+                                  VerticalAlignment="Stretch"
+                                  SelectionMode="Single"
+                                  SelectionChanged="dataGrid_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="###"
+                                                    Width="Auto"
+                                                    Binding="{Binding num}" />
+                                <DataGridTextColumn Header="Type"
+                                                    Width="Auto"
+                                                    Binding="{Binding type}" />
+                                <DataGridTextColumn Header="Size"
+                                                    Width="Auto"
+                                                    Binding="{Binding size}" />
+                                <DataGridTextColumn Header="OpCode"
+                                                    Width="Auto"
+                                                    Binding="{Binding opCode}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Фильтры">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <Label Content="Тип пакета" />
+                            <ComboBox x:Name="comboBoxType"
+                                      SelectedIndex="0">
+                                <TeraApi:PacketType>Any</TeraApi:PacketType>
+                                <TeraApi:PacketType>Recv</TeraApi:PacketType>
+                                <TeraApi:PacketType>Send</TeraApi:PacketType>
+                            </ComboBox>
+                            <Label Content="Белый список" />
+                            <ListBox x:Name="listBoxWhite"
+                                     MinHeight="75">
+                                <ListBox.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Добавить"
+                                                  Click="MenuItem_AddWhite_Click" />
+                                        <MenuItem Header="Удалить"
+                                                  Click="MenuItem_RemoveWhite_Click" />
+                                    </ContextMenu>
+                                </ListBox.ContextMenu>
+                            </ListBox>
+                            <Label Content="Чёрный список" />
+                            <ListBox x:Name="listBoxBlack"
+                                     MinHeight="75">
+                                <ListBox.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Добавить"
+                                                  Click="MenuItem_AddBlack_Click" />
+                                        <MenuItem Header="Удалить"
+                                                  Click="MenuItem_RemoveBlack_Click" />
+                                    </ContextMenu>
+                                </ListBox.ContextMenu>
+                            </ListBox>
+                            <Button x:Name="buttonFilterImport"
+                                    Click="buttonFilterImport_Click"
+                                    Content="Импорт" />
+                            <Button x:Name="buttonFilterExport"
+                                    Click="buttonFilterExport_Click"
+                                    Content="Экспорт" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <ToolBar Grid.Row="0">
+                    <Button x:Name="buttonNew"
+                            Padding="0"
+                            Width="32"
+                            Height="32"
+                            ToolTip="Очистить базу пакетов"
+                            Click="buttonNew_Click">
+                        <Image Source="/Teroniffer;component/assets/images/new.png" />
+                    </Button>
+                    <Button x:Name="buttonSave"
+                            Padding="0"
+                            Width="32"
+                            Height="32"
+                            ToolTip="Сохранить список пакетов"
+                            Click="buttonSave_Click">
+                        <Image Source="/Teroniffer;component/assets/images/save.png" />
+                    </Button>
+                    <Button x:Name="buttonCopy"
+                            Padding="0"
+                            Width="32"
+                            Height="32"
+                            ToolTip="Копировать пакет, не нашёл значка по лучше"
+                            Click="buttonCopy_Click">
+                        <Image Source="/Teroniffer;component/assets/images/bug.png" />
+                    </Button>
+                    <Button x:Name="buttonEdit"
+                            Padding="0"
+                            Width="32"
+                            Height="32"
+                            ToolTip="Настройки пакета"
+                            Click="buttonEdit_Click">
+                        <Image Source="/Teroniffer;component/assets/images/edit.png" />
+                    </Button>
+                    <Button x:Name="buttonWhite"
+                            Padding="0"
+                            Width="32"
+                            Height="32"
+                            ToolTip="Добавить пакет в белый список"
+                            Click="buttonWhite_Click">
+                        <Image Source="/Teroniffer;component/assets/images/white.png" />
+                    </Button>
+                    <Button x:Name="buttonBlack"
+                            Padding="0"
+                            Width="32"
+                            Height="32"
+                            ToolTip="Добавить пакет в чёрный список"
+                            Click="buttonBlack_Click">
+                        <Image Source="/Teroniffer;component/assets/images/black.png" />
+                    </Button>
+                    <TextBox x:Name="searchBox"
+                             Text="Поиск"
+                             MinWidth="100" />
+                    <Button x:Name="buttonSearch"
+                            Padding="0"
+                            Width="32"
+                            Height="32"
+                            ToolTip="Поиск массива байт"
+                            Click="buttonSearch_Click">
+                        <Image Source="/Teroniffer;component/assets/images/search.png" />
+                    </Button>
+                </ToolBar>
+                <TextBlock x:Name="textBlockPacket"
+                           Grid.Row="1"
+                           FontFamily="Courier New" />
+            </Grid>
+        </Grid>
+        <StatusBar Grid.Row="1">
+            <Label Content="Кол. пакетов:" />
+            <Label x:Name="labelPacketCount"
+                   Content="1000000" />
+            <Label Content="Исп. память:" />
+            <Label x:Name="labelMemoryUsage"
+                   Content="GC.GetTotalMemory(true);" />
+        </StatusBar>
+    </Grid>
+</Window>
