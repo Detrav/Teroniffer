@@ -57,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\FilterStructure.cs" />
+    <Compile Include="Core\PacketStructure.cs" />
+    <Compile Include="Core\PacketStructureManager.cs" />
+    <Compile Include="Core\ParsedPacket.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

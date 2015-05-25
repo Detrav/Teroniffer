@@ -1,4 +1,5 @@
 ﻿using Detrav.TeraApi.Interfaces;
+using Detrav.Teroniffer.Core;
 using Detrav.Teroniffer.Windows;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,7 @@ namespace Detrav.Teroniffer
                 show();
         }
 
-        public void configManager(IConfigManager configManager)
-        {
-            //throw new NotImplementedException();
-        }
-
+        
         public void hide()
         {
             window.Hide();
@@ -76,6 +73,12 @@ namespace Detrav.Teroniffer
                 resFilestream.Read(ba, 0, ba.Length);
                 return ba;
             }
+        }
+
+
+        public void init(IConfigManager configManager, IAssetManager assetManager)
+        {
+            PacketStructureManager.assets = assetManager;
         }
     }
 }

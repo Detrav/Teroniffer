@@ -291,8 +291,13 @@ namespace Detrav.Teroniffer.Windows
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            /*if (dataGrid.SelectedItem != null)
-                textBlockPacket.Text = Detrav.Sniffer.Tera.TeraPacketCreator.create((dataGrid.SelectedItem as DataPacket).getTeraPacket()).ToString();
+            if (dataGrid.SelectedItem != null)
+            {
+                DataPacket p = (dataGrid.SelectedItem as DataPacket);
+                PacketStructure ps = PacketStructureManager.getStructure(p.opCode);
+                textBlockPacket.Text = ps.parse(p.getTeraPacket().data).ToString();
+            }
+                //textBlockPacket.Text = Detrav.Sniffer.Tera.TeraPacketCreator.create((dataGrid.SelectedItem as DataPacket).getTeraPacket()).ToString();
             /*richTextBox.Document.Blocks.Clear();
             richTextBox.Selection.Text = Detrav.Sniffer.Tera.TeraPacketCreator.create((dataGrid.SelectedItem as DataPacket).getTeraPacket()).ToString();*/
         }
