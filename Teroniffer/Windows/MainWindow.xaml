@@ -194,9 +194,10 @@
                         <Image Source="/Teroniffer;component/assets/images/search.png" />
                     </Button>
                 </ToolBar>
-                <TextBlock x:Name="textBlockPacket"
-                           Grid.Row="1"
-                           FontFamily="Courier New" />
+                <ScrollViewer Grid.Row="1">
+                    <TextBlock x:Name="textBlockPacket"
+                               FontFamily="Courier New" />
+                </ScrollViewer>
             </Grid>
         </Grid>
         <StatusBar Grid.Row="1">
