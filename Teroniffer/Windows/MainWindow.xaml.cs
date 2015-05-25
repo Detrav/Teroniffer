@@ -295,7 +295,7 @@ namespace Detrav.Teroniffer.Windows
             {
                 DataPacket p = (dataGrid.SelectedItem as DataPacket);
                 PacketStructure ps = PacketStructureManager.getStructure(p.opCode);
-                textBlockPacket.Text = ps.parse(p.getTeraPacket().data).ToString();
+                textBlockPacket.Text = ps.parse(p.getTeraPacket()).ToString();
             }
                 //textBlockPacket.Text = Detrav.Sniffer.Tera.TeraPacketCreator.create((dataGrid.SelectedItem as DataPacket).getTeraPacket()).ToString();
             /*richTextBox.Document.Blocks.Clear();
