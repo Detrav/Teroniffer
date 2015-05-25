@@ -12,8 +12,8 @@ namespace Detrav.Teroniffer.Core
         List<PacketElement> elements = new List<PacketElement>();
         public PacketStructure()
         {
-            elements.Add(new PacketElement() { name = "size", start = 0, type = "ushort" });
-            elements.Add(new PacketElement() { name = "opCode", start = 2, type = "ushort" });
+            elements.Add(new PacketElement() { name = "size", start = "0", type = "ushort" });
+            elements.Add(new PacketElement() { name = "opCode", start = "2", type = "ushort" });
         }
         public string parse(TeraPacketWithData packet)
         {
@@ -26,12 +26,7 @@ namespace Detrav.Teroniffer.Core
             sb.Append("\n");
             foreach (var el in elements)
             {
-                
-                switch (el.type)
-                {
-                    
-                    default: val = "[UNKNOWN]";break;
-                }
+                string val = getElementValue(packet, el).ToString();
                 sb.AppendFormat("{0:X4} - {1} : {2} : {3}\n", el.start, el.name, val, el.type);
             }
             return sb.ToString();
@@ -56,28 +51,28 @@ namespace Detrav.Teroniffer.Core
             return null;
         }
 
-        private object getElementValue(TeraPacketWithData packet, PacketElement el)
+        public object getElementValue(TeraPacketWithData packet, PacketElement el)
         {
             ushort start = getElementStart(packet, el);
             ushort end = getElementEnd(packet, el);
             switch(el.type)
             {
                 case "byte": return packet.toByte(start);
-                case "sbyte":
-                case "ushort":
-                case "short":
-                case "uint":
-                case "int":
-                case "ulong":
-                case "long":
-                case "float":
-                case "double":
-                case "singleChar":
-                case "doubleChar":
-                case "singleString":
-                case "doubleString":
-                case "bool":
-                case "hex":
+                case "sbyte": return packet.toSByte(start);
+                case "ushort": return packet.toUInt16(start);
+                case "short": return packet.toInt16(start);
+                case "uint": return packet.toUInt32(start);
+                case "int": return packet.toInt32(start);
+                case "ulong": return packet.toUInt64(start);
+                case "long": return packet.toInt64(start);
+                case "float": return packet.toSingle(start);
+                case "double": return packet.toDouble(start);
+                case "singleChar": return packet.toSingleChar(start);
+                case "doubleChar": return packet.toDoubleChar(start);
+                case "singleString": return packet.toSingleString(start, end);
+                case "doubleString": return packet.toDoubleString(start, end);
+                case "bool": return packet.toBoolean(start);
+                case "hex": return packet.toHex(start, end);
                 default: return "[UNKNOWN]";
             }
         }
