@@ -19,40 +19,37 @@ namespace Detrav.Teroniffer.Windows
     /// <summary>
     /// Логика взаимодействия для ViewPacketWindow.xaml
     /// </summary>
-    public partial class ViewPacketWindow : Window
+    public partial class CalculatorWindow : Window
     {
-        public ViewPacketWindow()
+        public CalculatorWindow()
         {
             InitializeComponent();
-            comboBoxType.ItemsSource = new string[]
-            {
-                "bitarray",
-                "byte",
-                "sbyte",
-                "ushort",
-                "short",
-                "uint",
-                "int",
-                "ulong",
-                "long",
-                "float",
-                "double",
-                "char",
-                "string",
-                "boolean",
-                "hex"
-            };
             comboBoxType.SelectedIndex = 0;
         }
 
         byte[] data;
 
+        private void comboBoxType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void textBoxHex_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void textBoxValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        /*
         public void setData(byte[] data)
         {
             this.data = data;
             reMake();
         }
-        public void reMake()
+        /*public void reMake()
         {
             try
             {
@@ -170,6 +167,5 @@ namespace Detrav.Teroniffer.Windows
         private void comboBoxType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             reMake();
-        }
     }
 }
