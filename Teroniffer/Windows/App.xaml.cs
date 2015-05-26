@@ -19,6 +19,10 @@ namespace Detrav.Teroniffer.Windows
     /// </summary>
     public partial class App : Application
     {
-        
+        MainWindow mWindow;
+        private void Application_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            mWindow = (Application.Current.MainWindow as MainWindow);
+        }
     }
 }
