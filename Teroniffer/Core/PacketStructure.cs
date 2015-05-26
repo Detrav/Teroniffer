@@ -35,7 +35,7 @@ namespace Detrav.Teroniffer.Core
 
         private ushort getElementEnd(TeraPacketWithData packet, PacketElement el)
         {
-            if(el.end == null) return 0;
+            if (el.end == null) return 0; if (el.Lenght == 0) return 0;
             ushort result;
             if(UInt16.TryParse(el.end,out result)) return result;
             return (ushort)getElementValue(packet, el.end);
@@ -79,7 +79,7 @@ namespace Detrav.Teroniffer.Core
 
         private ushort getElementStart(TeraPacketWithData packet, PacketElement el)
         {
-            if (el.start == null) return 0;
+            if (el.start == null) return 0; if (el.Lenght == 0) return 0;
             ushort result;
             if (UInt16.TryParse(el.start, out result)) return result;
             return (ushort)getElementValue(packet, el.start);
