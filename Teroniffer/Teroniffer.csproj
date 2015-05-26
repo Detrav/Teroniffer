@@ -66,6 +66,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserElements\StructureElementControl.xaml.cs">
+      <DependentUpon>StructureElementControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AddPacketWindow.xaml.cs">
       <DependentUpon>AddPacketWindow.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,13 @@
     <Compile Include="Windows\CalculatorWindow.xaml.cs">
       <DependentUpon>CalculatorWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\StructureWindow.xaml.cs">
+      <DependentUpon>StructureWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="UserElements\StructureElementControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AddPacketWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -93,6 +103,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\CalculatorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\StructureWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -93,7 +93,8 @@ namespace Detrav.Teroniffer.Windows
 
         private void buttonEdit_Click(object sender, RoutedEventArgs e)
         {
-            
+            var w = new StructureWindow();
+            w.ShowDialog();
         }
 
         private void buttonWhite_Click(object sender, RoutedEventArgs e)
