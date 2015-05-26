@@ -1,4 +1,5 @@
 ﻿using Detrav.TeraApi;
+using Detrav.Teroniffer.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace Detrav.Teroniffer.Windows
         {
             InitializeComponent();
             comboBoxType.SelectedIndex = 0;
+            comboBoxType.Items = PacketElement.types;
         }
 
         byte[] data;

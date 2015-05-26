@@ -8,7 +8,7 @@ namespace Detrav.Teroniffer.Core
 {
     class PacketElement
     {
-        static string[] types = new string[] 
+        public static string[] types = new string[] 
         {
             "byte",
             "sbyte",
