@@ -12,10 +12,9 @@
             <TextBox Name="textBoxValue"
                      Text="0"
                      DockPanel.Dock="Left"
-                     HorizontalAlignment="Stretch" 
-                     TextChanged="textBoxValue_TextChanged"/>
-            <Label Grid.Row="2"
-                   Content="Hex:" />
+                     HorizontalAlignment="Stretch"
+                     TextChanged="textBoxValue_TextChanged" />
+            <Label Content="Hex:" />
             <TextBox Name="textBoxHex"
                      Text="0"
                      DockPanel.Dock="Left"

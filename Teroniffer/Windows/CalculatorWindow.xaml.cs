@@ -25,27 +25,82 @@ namespace Detrav.Teroniffer.Windows
         public CalculatorWindow()
         {
             InitializeComponent();
-            comboBoxType.SelectedIndex = 0;
             foreach (var el in PacketElement.types)
                 comboBoxType.Items.Add(el);
-        }
-
-        byte[] data;
-
-        private void comboBoxType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            comboBoxType.SelectedIndex = 0;
         }
 
         private void textBoxHex_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (_preventTextBoxEvents)
+                return;
+            _preventTextBoxEvents = true;
+            try
+            {
+                try
+                {
+                    switch (comboBoxType.SelectedItem.ToString())
+                    {
+                        case "byte": textBoxValue.Text = TeraPacketWithData.toByte(TeraPacketWithData.fromHex(textBoxHex.Text),0).ToString(); break;
+                        case "sbyte": textBoxValue.Text = TeraPacketWithData.toSByte(TeraPacketWithData.fromHex(textBoxHex.Text), 0).ToString(); break;
+                        case "ushort": textBoxValue.Text = TeraPacketWithData.toUInt16(TeraPacketWithData.fromHex(textBoxHex.Text), 0).ToString(); break;
+                        case "short": textBoxValue.Text = TeraPacketWithData.toInt16(TeraPacketWithData.fromHex(textBoxHex.Text), 0).ToString(); break;
+                        case "uint": textBoxValue.Text = TeraPacketWithData.toUInt32(TeraPacketWithData.fromHex(textBoxHex.Text), 0).ToString(); break;
+                        case "int": textBoxValue.Text = TeraPacketWithData.toInt32(TeraPacketWithData.fromHex(textBoxHex.Text), 0).ToString(); break;
+                        case "ulong": textBoxValue.Text = TeraPacketWithData.toUInt64(TeraPacketWithData.fromHex(textBoxHex.Text), 0).ToString(); break;
+                        case "long": textBoxValue.Text = TeraPacketWithData.toInt64(TeraPacketWithData.fromHex(textBoxHex.Text), 0).ToString(); break;
+                        case "float": textBoxValue.Text = TeraPacketWithData.toSingle(TeraPacketWithData.fromHex(textBoxHex.Text), 0).ToString(); break;
+                        case "double": textBoxValue.Text = TeraPacketWithData.toDouble(TeraPacketWithData.fromHex(textBoxHex.Text), 0).ToString(); break;
+                        case "singleChar": textBoxValue.Text = TeraPacketWithData.toSingleChar(TeraPacketWithData.fromHex(textBoxHex.Text), 0).ToString(); break;
+                        case "doubleChar": textBoxValue.Text = TeraPacketWithData.toDoubleChar(TeraPacketWithData.fromHex(textBoxHex.Text), 0).ToString(); break;
+                        case "singleString": textBoxValue.Text = TeraPacketWithData.toSingleString(TeraPacketWithData.fromHex(textBoxHex.Text), 0,10000); break;
+                        case "doubleString": textBoxValue.Text = TeraPacketWithData.toDoubleString(TeraPacketWithData.fromHex(textBoxHex.Text), 0,10000); break;
+                        case "bool": textBoxValue.Text = TeraPacketWithData.toBoolean(TeraPacketWithData.fromHex(textBoxHex.Text), 0).ToString(); break;
+                        case "hex": textBoxValue.Text = TeraPacketWithData.toHex(TeraPacketWithData.fromHex(textBoxHex.Text)); break;
+                    }
+                }
+                catch { textBoxValue.Text = "ERROR"; }
+            }
+            catch { }
+            _preventTextBoxEvents = false;
         }
-
+        bool _preventTextBoxEvents = false;
         private void textBoxValue_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (_preventTextBoxEvents)
+                return;
+            _preventTextBoxEvents = true;
+            try
+            {
+                try
+                {
+                    switch (comboBoxType.SelectedItem.ToString())
+                    {
+                        case "byte": textBoxHex.Text = byte.Parse(textBoxValue.Text).ToString("X2"); break;
+                        case "sbyte": textBoxHex.Text = sbyte.Parse(textBoxValue.Text).ToString("X2"); break;
+                        case "ushort": textBoxHex.Text = TeraPacketWithData.toHex(BitConverter.GetBytes(ushort.Parse(textBoxValue.Text))); break;
+                        case "short": textBoxHex.Text = TeraPacketWithData.toHex(BitConverter.GetBytes(short.Parse(textBoxValue.Text))); break;
+                        case "uint": textBoxHex.Text = TeraPacketWithData.toHex(BitConverter.GetBytes(uint.Parse(textBoxValue.Text))); break;
+                        case "int": textBoxHex.Text = TeraPacketWithData.toHex(BitConverter.GetBytes(int.Parse(textBoxValue.Text))); break;
+                        case "ulong": textBoxHex.Text = TeraPacketWithData.toHex(BitConverter.GetBytes(ulong.Parse(textBoxValue.Text))); break;
+                        case "long": textBoxHex.Text = TeraPacketWithData.toHex(BitConverter.GetBytes(long.Parse(textBoxValue.Text))); break;
+                        case "float": textBoxHex.Text = TeraPacketWithData.toHex(BitConverter.GetBytes(float.Parse(textBoxValue.Text))); break;
+                        case "double": textBoxHex.Text = TeraPacketWithData.toHex(BitConverter.GetBytes(double.Parse(textBoxValue.Text))); break;
+                        case "singleChar": textBoxHex.Text = TeraPacketWithData.toHex(BitConverter.GetBytes(char.Parse(textBoxValue.Text))); break;
+                        case "doubleChar": textBoxHex.Text = TeraPacketWithData.toHex(BitConverter.GetBytes(char.Parse(textBoxValue.Text))); break;
+                        case "singleString": textBoxHex.Text = TeraPacketWithData.toHex(TeraPacketWithData.fromSingleString(textBoxValue.Text)); break;
+                        case "doubleString": textBoxHex.Text = TeraPacketWithData.toHex(TeraPacketWithData.fromDoubleString(textBoxValue.Text)); break;
+                        case "bool": textBoxHex.Text = TeraPacketWithData.toHex(BitConverter.GetBytes(bool.Parse(textBoxValue.Text))); break;
+                        case "hex": textBoxHex.Text = TeraPacketWithData.toHex(TeraPacketWithData.fromHex(textBoxValue.Text)); break;
+                    }
+                }
+                catch { textBoxHex.Text = "ERROR"; }
+            }
+            catch { }
+            _preventTextBoxEvents = false;
         }
+
+
         /*
         public void setData(byte[] data)
         {
