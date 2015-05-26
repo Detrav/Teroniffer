@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Detrav.Teroniffer.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,9 @@ namespace Detrav.Teroniffer.UserElements
         {
             InitializeComponent();
             num = i;
+            foreach (var el in PacketElement.types)
+                comboBoxType.Items.Add(el);
+            comboBoxType.SelectedIndex = 0;
         }
 
         private void ButtonDel_Click(object sender, RoutedEventArgs e)

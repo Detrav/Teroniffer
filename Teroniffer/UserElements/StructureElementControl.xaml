@@ -21,7 +21,8 @@
                  Width="128" />
         <TextBox x:Name="textBoxEnd"
                  Width="128" />
-        <ComboBox  Width="128" />
+        <ComboBox x:Name="comboBoxType"
+            Width="128" />
         <Button Content="Up"
                 Width="32" Click="ButtonUp_Click"/>
         <Button Content="Dwn"
