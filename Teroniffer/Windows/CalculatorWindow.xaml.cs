@@ -26,7 +26,8 @@ namespace Detrav.Teroniffer.Windows
         {
             InitializeComponent();
             comboBoxType.SelectedIndex = 0;
-            comboBoxType.Items = PacketElement.types;
+            foreach (var el in PacketElement.types)
+                comboBoxType.Items.Add(el);
         }
 
         byte[] data;

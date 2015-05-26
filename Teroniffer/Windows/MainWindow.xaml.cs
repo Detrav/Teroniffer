@@ -94,8 +94,8 @@ namespace Detrav.Teroniffer.Windows
         {
             if (dataGrid.SelectedItem != null)
             {
-                ViewPacketWindow w = new ViewPacketWindow();
-                w.setData((dataGrid.SelectedItem as DataPacket).getTeraPacket().data);
+                CalculatorWindow w = new CalculatorWindow();
+                //w.setData((dataGrid.SelectedItem as DataPacket).getTeraPacket().data);
                 w.Show();
             }
         }
