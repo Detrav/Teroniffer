@@ -10,11 +10,15 @@ namespace Detrav.Teroniffer.Core
     class PacketStructure
     {
         public List<PacketElement> elements = new List<PacketElement>();
-        public PacketStructure()
+        public PacketStructure(bool _new)
         {
-            elements.Add(new PacketElement() { name = "size", start = "0", type = "ushort" });
-            elements.Add(new PacketElement() { name = "opCode", start = "2", type = "ushort" });
+            if (_new)
+            {
+                elements.Add(new PacketElement() { name = "size", start = "0", type = "ushort" });
+                elements.Add(new PacketElement() { name = "opCode", start = "2", type = "ushort" });
+            }
         }
+        public PacketStructure() : this(false) { }
         public string parse(TeraPacketWithData packet)
         {
             StringBuilder sb = new StringBuilder();
