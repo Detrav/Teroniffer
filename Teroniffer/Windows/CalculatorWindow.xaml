@@ -1,0 +1,27 @@
+﻿<Window x:Class="Detrav.Teroniffer.Windows.CalculatorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Калькулятор данных"
+        Height="300"
+        Width="300">
+    <Grid>
+        <StackPanel>
+            <Label Content="Значение:" />
+            <TextBox Name="textBoxValue"
+                     Text="0"
+                     DockPanel.Dock="Left"
+                     HorizontalAlignment="Stretch" 
+                     TextChanged="textBoxValue_TextChanged"/>
+            <Label Grid.Row="2"
+                   Content="Hex:" />
+            <TextBox Name="textBoxHex"
+                     Text="0"
+                     DockPanel.Dock="Left"
+                     HorizontalAlignment="Stretch" 
+                     TextChanged="textBoxHex_TextChanged"/>
+            <Label Content="Тип данных для Hex -> Value:" />
+            <ComboBox x:Name="comboBoxType"
+                      SelectionChanged="comboBoxType_SelectionChanged" />
+        </StackPanel>
+    </Grid>
+</Window>
