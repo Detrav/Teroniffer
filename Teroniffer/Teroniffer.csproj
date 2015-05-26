@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{50B58CF9-892C-43FB-88CE-068B1D848457}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Detrav.Teroniffer</RootNamespace>
     <AssemblyName>Teroniffer</AssemblyName>
@@ -69,10 +69,17 @@
     <Compile Include="Windows\AddPacketWindow.xaml.cs">
       <DependentUpon>AddPacketWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\CalculatorWindow.xaml.cs">
       <DependentUpon>CalculatorWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Windows\AddPacketWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
