@@ -166,6 +166,14 @@
                             Click="buttonEdit_Click">
                         <Image Source="/Teroniffer;component/assets/images/edit.png" />
                     </Button>
+                    <Button x:Name="buttonCalc"
+                            Padding="0"
+                            Width="32"
+                            Height="32"
+                            ToolTip="Калькулятор данных"
+                            Click="buttonCalc_Click">
+                        <Image Source="/Teroniffer;component/assets/images/calculator.png" />
+                    </Button>
                     <Button x:Name="buttonWhite"
                             Padding="0"
                             Width="32"

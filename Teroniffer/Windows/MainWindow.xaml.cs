@@ -33,6 +33,7 @@ namespace Detrav.Teroniffer.Windows
             ((buttonSave as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.save.png");
             ((buttonCopy as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.bug.png");
             ((buttonEdit as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.edit.png");
+            ((buttonCalc as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.calculator.png");
             ((buttonWhite as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.white.png");
             ((buttonBlack as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.black.png");
             ((buttonSearch as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.search.png");
@@ -92,12 +93,7 @@ namespace Detrav.Teroniffer.Windows
 
         private void buttonEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (dataGrid.SelectedItem != null)
-            {
-                CalculatorWindow w = new CalculatorWindow();
-                //w.setData((dataGrid.SelectedItem as DataPacket).getTeraPacket().data);
-                w.Show();
-            }
+            
         }
 
         private void buttonWhite_Click(object sender, RoutedEventArgs e)
@@ -362,6 +358,16 @@ namespace Detrav.Teroniffer.Windows
                 return image;
 
             }
+        }
+
+        private void buttonCalc_Click(object sender, RoutedEventArgs e)
+        {
+            //if (dataGrid.SelectedItem != null)
+            //{
+            CalculatorWindow w = new CalculatorWindow();
+            //w.setData((dataGrid.SelectedItem as DataPacket).getTeraPacket().data);
+            w.Show();
+            //}
         }
     }
 }
