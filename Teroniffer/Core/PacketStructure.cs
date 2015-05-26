@@ -9,7 +9,7 @@ namespace Detrav.Teroniffer.Core
 {
     class PacketStructure
     {
-        List<PacketElement> elements = new List<PacketElement>();
+        public List<PacketElement> elements = new List<PacketElement>();
         public PacketStructure()
         {
             elements.Add(new PacketElement() { name = "size", start = "0", type = "ushort" });

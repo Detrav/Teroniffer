@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Detrav.TeraApi.OpCodes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Detrav.Teroniffer.Windows
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            PacketCreator.setVersion(OpCodeVersion.P2805);
             mWindow = new MainWindow();
             MainWindow = mWindow;
             mWindow.Show();

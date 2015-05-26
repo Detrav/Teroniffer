@@ -1,4 +1,6 @@
-﻿using Detrav.Teroniffer.UserElements;
+﻿using Detrav.TeraApi.OpCodes;
+using Detrav.Teroniffer.Core;
+using Detrav.Teroniffer.UserElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +25,48 @@ namespace Detrav.Teroniffer.Windows
         public StructureWindow()
         {
             InitializeComponent();
+            SortedList<string, object> sortedList = new SortedList<string, object>();
+            foreach (var i in PacketCreator.getOpCodes())
+                sortedList.Add(i.ToString(), i);
+            comboBox.ItemsSource = null;
+            comboBox.ItemsSource = sortedList.Values;
+        }
+
+        public StructureWindow(object select)
+        {
+            InitializeComponent();
+            SortedList<string, object> sortedList = new SortedList<string, object>();
+            foreach (var i in PacketCreator.getOpCodes())
+                sortedList.Add(i.ToString(), i);
+            comboBox.ItemsSource = null;
+            comboBox.ItemsSource = sortedList.Values;
+            comboBox.SelectedItem = select;
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
             stackPanel.Children.Insert(stackPanel.Children.Count - 1, new StructureElementControl(stackPanel.Children.Count - 1));
+        }
+
+        private void buttonSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonLoad_Click(object sender, RoutedEventArgs e)
+        {
+            while (stackPanel.Children.Count > 1)
+                stackPanel.Children.RemoveAt(0);
+            PacketStructure ps = PacketStructureManager.getStructure(comboBox.SelectedItem);
+            foreach(var el in ps.elements)
+            {
+                stackPanel.Children.Insert(stackPanel.Children.Count - 1, new StructureElementControl(stackPanel.Children.Count - 1,el));
+            }
+        }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            buttonLoad_Click(sender, new RoutedEventArgs());
         }
     }
 }

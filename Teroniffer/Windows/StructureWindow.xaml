@@ -11,12 +11,14 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <ComboBox x:Name="comboBox" Width="416"/>
+            <ComboBox x:Name="comboBox" Width="416" SelectionChanged="comboBox_SelectionChanged"/>
             <GridSplitter Width="96"/>
-            <Button Content="Save"
-                    Width="64" />
-            <Button Content="Load"
-                    Width="64" />
+            <Button x:Name="buttonSave"
+                Content="Save"
+                    Width="64" Click="buttonSave_Click"/>
+            <Button x:Name="buttonLoad"
+                Content="Load"
+                    Width="64" Click="buttonLoad_Click" />
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Label Content="#"

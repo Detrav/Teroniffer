@@ -32,13 +32,32 @@ namespace Detrav.Teroniffer.UserElements
                 labelNum.Content = value;
             }
         }
-        public StructureElementControl(int i = -1)
+        public StructureElementControl(int i)
         {
             InitializeComponent();
             num = i;
             foreach (var el in PacketElement.types)
                 comboBoxType.Items.Add(el);
             comboBoxType.SelectedIndex = 0;
+        }
+
+        internal StructureElementControl(int i, PacketElement pe) :this(i)
+        {
+            textBoxName.Text = pe.name;
+            textBoxStart.Text = pe.start;
+            textBoxEnd.Text = pe.end;
+            comboBoxType.SelectedItem = pe.type;
+        }
+
+        internal PacketElement getPacketElement()
+        {
+            return new PacketElement()
+            {
+                name = textBoxName.Text,
+                start = textBoxStart.Text,
+                end = textBoxEnd.Text,
+                type = comboBoxType.SelectedItem.ToString()
+            };
         }
 
         private void ButtonDel_Click(object sender, RoutedEventArgs e)
