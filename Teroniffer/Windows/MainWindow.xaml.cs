@@ -93,7 +93,10 @@ namespace Detrav.Teroniffer.Windows
 
         private void buttonEdit_Click(object sender, RoutedEventArgs e)
         {
-            var w = new StructureWindow();
+            StructureWindow w;
+            if (dataGrid.SelectedItem != null)
+                w = new StructureWindow((dataGrid.SelectedItem as DataPacket).opCode);
+            else w = new StructureWindow();
             w.ShowDialog();
         }
 
