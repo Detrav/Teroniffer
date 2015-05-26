@@ -169,3 +169,7 @@ namespace Detrav.Teroniffer.Windows
             reMake();
     }
 }
+        }
+        */
+    }
+}
