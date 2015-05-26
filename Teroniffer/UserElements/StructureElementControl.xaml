@@ -23,9 +23,9 @@
                  Width="128" />
         <ComboBox  Width="128" />
         <Button Content="Up"
-                Width="32" />
+                Width="32" Click="ButtonUp_Click"/>
         <Button Content="Dwn"
-                Width="32" />
+                Width="32" Click="ButtonDwn_Click"/>
         <Button Content="Del"
                 Width="32" Click="ButtonDel_Click" />
     </StackPanel>

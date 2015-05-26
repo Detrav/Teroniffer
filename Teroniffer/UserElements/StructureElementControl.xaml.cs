@@ -46,5 +46,25 @@ namespace Detrav.Teroniffer.UserElements
                 (sp.Children[i] as StructureElementControl).num = i;
             }
         }
+
+        private void ButtonUp_Click(object sender, RoutedEventArgs e)
+        {
+            if (num <= 0) return;
+            StackPanel sp = Parent as StackPanel;
+            sp.Children.RemoveAt(num);
+            sp.Children.Insert(num - 1, this);
+            num--;
+            (sp.Children[num + 1] as StructureElementControl).num = num + 1;
+        }
+
+        private void ButtonDwn_Click(object sender, RoutedEventArgs e)
+        {
+            StackPanel sp = Parent as StackPanel;
+            if (num >= sp.Children.Count - 1) return;
+            sp.Children.RemoveAt(num);
+            sp.Children.Insert(num + 1, this);
+            num++;
+            (sp.Children[num - 1] as StructureElementControl).num = num - 1;
+        }
     }
 }

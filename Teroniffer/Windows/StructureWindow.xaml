@@ -1,11 +1,53 @@
 ﻿<Window x:Class="Detrav.Teroniffer.Windows.StructureWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="StructureWindow" Height="300" Width="700">
-    <ScrollViewer>
-        <StackPanel x:Name="stackPanel" ScrollViewer.VerticalScrollBarVisibility="Visible">
-            <Button x:Name="buttonAdd"
-                    Content="Добавить" Click="buttonAdd_Click"/>
+        Title="StructureWindow"
+        Height="300"
+        Width="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Label Content="#"
+                   VerticalContentAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   Width="32"
+                   Padding="0" />
+            <Label Content="Название переменной"
+                   VerticalContentAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   Width="128"
+                   Padding="0" />
+            <Label Content="Начало"
+                   VerticalContentAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   Width="128"
+                   Padding="0" />
+            <Label Content="Конец"
+                   VerticalContentAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   Width="128"
+                   Padding="0" />
+            <Label Content="Тип"
+                   VerticalContentAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   Width="128"
+                   Padding="0" />
+            <Label Content="Управление"
+                   VerticalContentAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   Width="96"
+                   Padding="0" />
         </StackPanel>
-    </ScrollViewer>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel x:Name="stackPanel"
+                        ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <Button x:Name="buttonAdd"
+                        Content="Добавить"
+                        Click="buttonAdd_Click" />
+            </StackPanel>
+        </ScrollViewer>
+        </Grid>
 </Window>
