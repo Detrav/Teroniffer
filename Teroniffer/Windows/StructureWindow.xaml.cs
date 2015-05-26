@@ -51,6 +51,7 @@ namespace Detrav.Teroniffer.Windows
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             PacketStructure ps = new PacketStructure();
+            ps.elements.Clear();
             for(int i =0; i<stackPanel.Children.Count-1;i++)
             {
                 ps.elements.Add(((StructureElementControl)stackPanel.Children[i]).getPacketElement());
