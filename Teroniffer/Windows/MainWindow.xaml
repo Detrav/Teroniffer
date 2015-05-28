@@ -3,7 +3,7 @@
         xmlns:TeraApi="clr-namespace:Detrav.TeraApi;assembly=TeraApi"
         x:Class="Detrav.Teroniffer.Windows.MainWindow"
         Title="Teroniffer"
-        Height="350"
+        Height="450"
         Width="825" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
