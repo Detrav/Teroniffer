@@ -155,6 +155,12 @@
   <ItemGroup>
     <EmbeddedResource Include="assets\images\calculator.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="assets\images\open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="assets\images\copy.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

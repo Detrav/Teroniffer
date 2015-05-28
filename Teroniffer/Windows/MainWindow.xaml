@@ -142,6 +142,14 @@
                             Click="buttonNew_Click">
                         <Image Source="/Teroniffer;component/assets/images/new.png" />
                     </Button>
+                    <Button x:Name="buttonOpen"
+                            Padding="0"
+                            Width="32"
+                            Height="32"
+                            ToolTip="Открыть список пакетов"
+                            Click="buttonOpen_Click">
+                        <Image Source="/Teroniffer;component/assets/images/open.png" />
+                    </Button>
                     <Button x:Name="buttonSave"
                             Padding="0"
                             Width="32"
@@ -156,7 +164,7 @@
                             Height="32"
                             ToolTip="Копировать пакет, не нашёл значка по лучше"
                             Click="buttonCopy_Click">
-                        <Image Source="/Teroniffer;component/assets/images/bug.png" />
+                        <Image Source="/Teroniffer;component/assets/images/copy.png" />
                     </Button>
                     <Button x:Name="buttonEdit"
                             Padding="0"

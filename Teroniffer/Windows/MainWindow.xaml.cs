@@ -30,8 +30,9 @@ namespace Detrav.Teroniffer.Windows
         {
             InitializeComponent();
             ((buttonNew as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.new.png");
+            ((buttonOpen as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.open.png");
             ((buttonSave as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.save.png");
-            ((buttonCopy as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.bug.png");
+            ((buttonCopy as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.copy.png");
             ((buttonEdit as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.edit.png");
             ((buttonCalc as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.calculator.png");
             ((buttonWhite as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.white.png");
