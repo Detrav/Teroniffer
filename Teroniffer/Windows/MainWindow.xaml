@@ -209,6 +209,14 @@
                             Click="buttonSearch_Click">
                         <Image Source="/Teroniffer;component/assets/images/search.png" />
                     </Button>
+                    <Button x:Name="buttonBug"
+                            Padding="0"
+                            Width="32"
+                            Height="32"
+                            ToolTip="Нашли ошибку?"
+                            Click="buttonBug_Click">
+                        <Image Source="/Teroniffer;component/assets/images/bug.png" />
+                    </Button>
                 </ToolBar>
                 <ScrollViewer Grid.Row="1">
                     <TextBlock x:Name="textBlockPacket"

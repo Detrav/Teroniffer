@@ -38,6 +38,7 @@ namespace Detrav.Teroniffer.Windows
             ((buttonWhite as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.white.png");
             ((buttonBlack as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.black.png");
             ((buttonSearch as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.search.png");
+            ((buttonBug as Button).Content as Image).Source = ToImage("Detrav.Teroniffer.assets.images.bug.png");
         }
 
         List<DataPacket> packets = new List<DataPacket>();
@@ -378,6 +379,16 @@ namespace Detrav.Teroniffer.Windows
             //w.setData((dataGrid.SelectedItem as DataPacket).getTeraPacket().data);
             w.Show();
             //}
+        }
+
+
+        private void buttonBug_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void buttonOpen_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
