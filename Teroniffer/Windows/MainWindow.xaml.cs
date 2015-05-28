@@ -389,7 +389,20 @@ namespace Detrav.Teroniffer.Windows
         }
         private void buttonOpen_Click(object sender, RoutedEventArgs e)
         {
-
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Json file (*.json)|*.json";
+            ofd.DefaultExt = ".json";
+            ofd.InitialDirectory = PacketStructureManager.assets.getMyFolder();
+            if (ofd.ShowDialog() == true)
+            {
+                SavedPacketData[] list = PacketStructureManager.assets.deSerialize(ofd.FileName, typeof(SavedPacketData[]), TeraApi.Interfaces.AssetType.global) as SavedPacketData[];
+                lock (packets)
+                {
+                    packets.Clear();
+                    foreach(var el in list)
+                    packets.Add(new DataPacket(packets.Count,new TeraPacketWithData(el.data,el.type)));   
+                }
+            }
         }
     }
 }
