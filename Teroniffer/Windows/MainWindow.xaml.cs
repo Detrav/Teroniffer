@@ -79,17 +79,18 @@ namespace Detrav.Teroniffer.Windows
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Text file (*.txt)|*.txt";
+            sfd.Filter = "Json file (*.json)|*.json";
+            sfd.DefaultExt = ".json";
+            sfd.InitialDirectory = PacketStructureManager.assets.getMyFolder();
             if (sfd.ShowDialog() == true)
             {
-                using (System.IO.TextWriter tw = new System.IO.StreamWriter(sfd.OpenFile()))
+                List<SavedPacketData> list = new List<SavedPacketData>();
+                lock (packets)
                 {
-                    lock (packets)
-                    {
-                        foreach (var p in packets)
-                            tw.WriteLine(p.getTeraPacket().ToString());
-                    }
+                    foreach (var p in packets)
+                        list.Add(new SavedPacketData(p.type, p.getTeraPacket().data));
                 }
+                PacketStructureManager.assets.serialize(sfd.FileName, list.ToArray(), TeraApi.Interfaces.AssetType.global);
             }
         }
 
