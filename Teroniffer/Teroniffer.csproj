@@ -66,6 +66,7 @@
     <Compile Include="Core\PacketElement.cs" />
     <Compile Include="Core\PacketStructure.cs" />
     <Compile Include="Core\PacketStructureManager.cs" />
+    <Compile Include="Core\SavedPacketData.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
