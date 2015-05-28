@@ -231,26 +231,24 @@ namespace Detrav.Teroniffer.Windows
         private void buttonFilterImport_Click(object sender, RoutedEventArgs e)
         {
             FilterStructure f;
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Text file (*.xml)|*.xml";
-            if (ofd.ShowDialog() == true)
-            {
-                using (StreamReader r = new StreamReader(ofd.OpenFile()))
-                {
-                    XmlSerializer xsr = new XmlSerializer(typeof(FilterStructure));
-                    f = xsr.Deserialize(r) as FilterStructure;
-                }
+            //OpenFileDialog ofd = new OpenFileDialog();
+            //ofd.Filter = "Text file (*.xml)|*.xml";
+            string file = PacketStructureManager.assets.saveFileDialog("Json file (*.json)|*.json");
+            if (file == null) return;
 
-                comboBoxType.SelectedIndex = f.indexRecvSend;
-                listBoxWhite.Items.Clear();
-                if (f.whiteList != null)
-                    foreach (var el in f.whiteList)
-                        listBoxWhite.Items.Add(PacketCreator.getOpCode((ushort)el));
-                listBoxBlack.Items.Clear();
-                if (f.blackList != null)
-                    foreach (var el in f.blackList)
-                        listBoxBlack.Items.Add(PacketCreator.getOpCode((ushort)el));
-            }
+            object obj = PacketStructureManager.assets.deSerialize(file, typeof(FilterStructure), TeraApi.Interfaces.AssetType.global);
+            if (obj == null) return;
+            f = obj as FilterStructure;
+            comboBoxType.SelectedIndex = f.indexRecvSend;
+            listBoxWhite.Items.Clear();
+            if (f.whiteList != null)
+                foreach (var el in f.whiteList)
+                    listBoxWhite.Items.Add(PacketCreator.getOpCode((ushort)el));
+            listBoxBlack.Items.Clear();
+            if (f.blackList != null)
+                foreach (var el in f.blackList)
+                    listBoxBlack.Items.Add(PacketCreator.getOpCode((ushort)el));
+
         }
 
         private void buttonFilterExport_Click(object sender, RoutedEventArgs e)
@@ -266,16 +264,18 @@ namespace Detrav.Teroniffer.Windows
             for (int i = 0; i < f.blackList.Length; i++)
                 f.blackList[i] = listBoxBlack.Items[i];
 
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Text file (*.xml)|*.xml";
-            if (sfd.ShowDialog() == true)
+            
+            string file = PacketStructureManager.assets.saveFileDialog("Json file (*.json)|*.json");
+            if (file == null) return;
+            PacketStructureManager.assets.serialize(file, f, TeraApi.Interfaces.AssetType.global);
+            /*if (sfd.ShowDialog() == true)
             {
                 using (StreamWriter w = new StreamWriter(sfd.OpenFile()))
                 {
                     XmlSerializer xsr = new XmlSerializer(f.GetType());
                     xsr.Serialize(w, f);
                 }
-            }
+            }*/
 
         }
 
