@@ -31,5 +31,25 @@ namespace Detrav.Teroniffer.Core
         public string start = null;
         public string end = null;
         public string type = null;
+        public string value = null;
+
+        public PacketElement() { }
+        public PacketElement(string name, string start, string end, string type,string value )
+        {
+            this.name = name;
+            this.start = start;
+            this.end = end;
+            this.type = type;
+            this.value = value;
+        }
+
+        public PacketElement(PacketElement el, string value = null)
+        {
+            name = el.name;
+            start = el.start;
+            end = el.end;
+            type = el.type;
+            this.value = value;
+        }
     }
 }

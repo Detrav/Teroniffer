@@ -19,8 +19,11 @@ namespace Detrav.Teroniffer.Core
             }
         }
         public PacketStructure() : this(false) { }
+
+
         public string parse(TeraPacketWithData packet)
         {
+            PacketElement[] list = getListElements(packet);
             StringBuilder sb = new StringBuilder();
             sb.Append("Offset 00 01 02 03 04 05 06 07 | 08 09 0A 0B 0C 0D 0E 0F  0123456789ABCDEF\n");
             for (int i = 0; i < packet.data.Length; i += 16)
@@ -28,9 +31,52 @@ namespace Detrav.Teroniffer.Core
                 sb.AppendFormat(" {0:X4}: {1,-24}| {2,-24} {3,-16}\n", i, packet.toHex(i, i + 8, " "), packet.toHex(i + 8, i + 16, " "), packet.toSingleString(i, i + 16));
             }
             sb.Append("\n");
-            writeToStringBuilder(packet, sb, 0);
+            foreach(var el in list)
+            {
+                sb.AppendFormat("{0:X4} - {1} : {2} : {3}\n", el.start, el.name, el.value, el.type);
+            }
             return sb.ToString();
+        }
 
+        private PacketElement[] getListElements(TeraPacketWithData packet)
+        {
+            List<PacketElement> list = new List<PacketElement>();
+            for (int i = 0; i < elements.Count; i++)
+            {
+                PacketElement el = elements[i];
+                //if (el.name == "startArray")
+                    //i = getArray(packet, list, i);
+                //else
+                    list.Add(new PacketElement(el, getElementValue(packet, el).ToString()));
+            }
+            return list.ToArray();
+        }
+
+        /*
+        private int getArray(TeraPacketWithData packet, List<PacketElement> list, int num)
+        {
+            ushort startArray = getElementStart(packet,elements[num]);
+            ushort sizeArray = getElementEnd(packet,elements[num]);
+            int countArray = Convert.ToInt16(getElementValue(packet,elements[num]));
+            int j =0;
+            for (int i = num+1; i < elements.Count; i++,j++)
+            {
+                PacketElement el = elements[i];
+                string val = getElementValue(packet, el).ToString();
+                switch(el.name)
+                {
+                    case "startArray":
+                        i = getArray(packet, list, i);
+                        break;
+                    case "endArray":
+                        if(j<countArray) i = num;
+                        else return i + 1;
+                        break;
+                    default:
+                        list.Add(getArrayElement(packet,list,));
+                }
+            }
+            return int.MaxValue;
         }
 
         private int writeToStringBuilder(TeraPacketWithData packet, StringBuilder sb, int num)
@@ -39,8 +85,8 @@ namespace Detrav.Teroniffer.Core
             {
                 PacketElement el = elements[i];
                 string val = getElementValue(packet, el).ToString();
-                if(val == "startArray") 
-                sb.AppendFormat("{0:X4} - {1} : {2} : {3}\n", el.start, el.name, val, el.type);
+                if (val == "startArray")
+                    sb.AppendFormat("{0:X4} - {1} : {2} : {3}\n", el.start, el.name, val, el.type);
             }
             return -1;
         }
@@ -59,7 +105,7 @@ namespace Detrav.Teroniffer.Core
                     if (val == "endArray") break;
                 }
             }
-        }
+        }*/
 
         private ushort getElementEnd(TeraPacketWithData packet, PacketElement el)
         {
