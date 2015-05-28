@@ -244,11 +244,11 @@ namespace Detrav.Teroniffer.Windows
             listBoxWhite.Items.Clear();
             if (f.whiteList != null)
                 foreach (var el in f.whiteList)
-                    listBoxWhite.Items.Add(PacketCreator.getOpCode((ushort)el));
+                    listBoxWhite.Items.Add(PacketCreator.getOpCode(Convert.ToUInt16(el)));
             listBoxBlack.Items.Clear();
             if (f.blackList != null)
                 foreach (var el in f.blackList)
-                    listBoxBlack.Items.Add(PacketCreator.getOpCode((ushort)el));
+                    listBoxBlack.Items.Add(PacketCreator.getOpCode(Convert.ToUInt16(el)));
 
         }
 
