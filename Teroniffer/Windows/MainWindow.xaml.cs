@@ -231,11 +231,12 @@ namespace Detrav.Teroniffer.Windows
         private void buttonFilterImport_Click(object sender, RoutedEventArgs e)
         {
             FilterStructure f;
-            //OpenFileDialog ofd = new OpenFileDialog();
-            //ofd.Filter = "Text file (*.xml)|*.xml";
-            string file = PacketStructureManager.assets.saveFileDialog("Json file (*.json)|*.json");
-            if (file == null) return;
-
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Json file (*.json)|*.json";
+            ofd.InitialDirectory = PacketStructureManager.assets.getMyFolder();
+            ofd.DefaultExt = ".json";
+            if (ofd.ShowDialog() != true) return;
+            string file = ofd.FileName;
             object obj = PacketStructureManager.assets.deSerialize(file, typeof(FilterStructure), TeraApi.Interfaces.AssetType.global);
             if (obj == null) return;
             f = obj as FilterStructure;
@@ -264,10 +265,14 @@ namespace Detrav.Teroniffer.Windows
             for (int i = 0; i < f.blackList.Length; i++)
                 f.blackList[i] = listBoxBlack.Items[i];
 
-            
-            string file = PacketStructureManager.assets.saveFileDialog("Json file (*.json)|*.json");
-            if (file == null) return;
-            PacketStructureManager.assets.serialize(file, f, TeraApi.Interfaces.AssetType.global);
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.DefaultExt = ".json";
+            sfd.Filter = "Json file (*.json)|*.json";
+            //sfd.RestoreDirectory = true;
+            sfd.InitialDirectory = PacketStructureManager.assets.getMyFolder();
+            if(sfd.ShowDialog() == true)
+                PacketStructureManager.assets.serialize(sfd.FileName, f, TeraApi.Interfaces.AssetType.global);
             /*if (sfd.ShowDialog() == true)
             {
                 using (StreamWriter w = new StreamWriter(sfd.OpenFile()))
