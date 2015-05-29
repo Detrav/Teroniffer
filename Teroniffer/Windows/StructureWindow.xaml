@@ -14,7 +14,7 @@
             <ComboBox x:Name="comboBox"
                       Width="416"
                       SelectionChanged="comboBox_SelectionChanged" />
-            <GridSplitter Width="96" />
+            <GridSplitter Width="32" />
             <Button x:Name="buttonSave"
                     Content="Save"
                     Width="64"
@@ -23,6 +23,10 @@
                     Content="Load"
                     Width="64"
                     Click="buttonLoad_Click" />
+            <Button x:Name="buttonTest"
+                    Content="Test"
+                    Width="64"
+                    Click="buttonTest_Click" />
         </StackPanel>
         <ScrollViewer Grid.Row="1">
             <TextBox x:Name="textBox" AcceptsReturn="True" TextWrapping="NoWrap"

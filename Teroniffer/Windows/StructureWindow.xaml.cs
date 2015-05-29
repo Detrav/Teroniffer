@@ -65,5 +65,26 @@ namespace Detrav.Teroniffer.Windows
         {
             buttonLoad_Click(sender, new RoutedEventArgs());
         }
+
+        private void buttonTest_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                PacketStructure ps = new PacketStructure(false);
+                ps.script = textBox.Text;
+                byte[] data = new byte[1000];
+                for(int i = 0; i<data.Length;i+=2)
+                {
+                    data[i] = 0;
+                    data[i+1] = 1;
+                }
+                ps.parse(new TeraApi.TeraPacketWithData(data, TeraApi.PacketType.Any));
+                MessageBox.Show("OK");
+            }
+            catch(Exception e1)
+            {
+                MessageBox.Show(e1.Message);
+            }
+        }
     }
 }
