@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Detrav.Teroniffer.Windows
 {
@@ -22,7 +23,7 @@ namespace Detrav.Teroniffer.Windows
     public partial class App : Application
     {
         MainWindow mWindow;
-
+        DispatcherTimer timer;
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             var cofd = new CommonOpenFileDialog();
@@ -39,7 +40,17 @@ namespace Detrav.Teroniffer.Windows
             MainWindow = mWindow;
             mWindow.Show();
             mWindow.close = true;
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(500);
+            timer.Tick += timer_Tick;
+            timer.Start();
+        }
 
+        void timer_Tick(object sender, EventArgs e)
+        {
+            timer.Stop();
+            mWindow.doEvents();
+            timer.Start();
         }
     }
 }
