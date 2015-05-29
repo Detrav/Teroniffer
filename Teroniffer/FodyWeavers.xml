@@ -4,6 +4,7 @@
     <IncludeAssemblies>
       KeraLua
       NLua
+      Newtonsoft.Json
     </IncludeAssemblies>
     <PreloadOrder>
     </PreloadOrder>
