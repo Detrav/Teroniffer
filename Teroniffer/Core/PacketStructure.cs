@@ -23,8 +23,8 @@ namespace Detrav.Teroniffer.Core
             if (_new)
             {
                 script =
-                    "addElement(\"size\",0,\"ushort\",0)" + Environment.NewLine +
-                    "addElement(\"opCode\",2,\"ushort\",0)";
+                    "addElement(\"size\",0,\"ushort\");" + Environment.NewLine +
+                    "addElement(\"opCode\",2,\"ushort\");";
                 //elements.Add(new PacketElement() { name = "size", start = "0", type = "ushort" });
                 //elements.Add(new PacketElement() { name = "opCode", start = "2", type = "ushort" });
             }
@@ -44,7 +44,7 @@ namespace Detrav.Teroniffer.Core
             sb.Append("\n");
             //тут начало луа
             this.packet = packet; elements.Clear();
-            Console.WriteLine(lua.DoString("return 1+1"));
+            //Console.WriteLine(lua.DoString("return 1+1"));
             lua.DoString(script);
             this.packet = null;
             //тут конец
@@ -55,7 +55,7 @@ namespace Detrav.Teroniffer.Core
             return sb.ToString();
         }
 
-        public object addElement(string name, ushort start,string type, ushort end = 0)
+        public object addElement(string name, int start,string type, int end = 0)
         {
             object val;
             switch (type)
@@ -78,7 +78,7 @@ namespace Detrav.Teroniffer.Core
                 case "hex": val = packet.toHex(start, end); break;
                 default: val = "[UNKNOWN]"; break;
             }
-            elements.Add(new PacketElement(name, start, type, val, end));
+            elements.Add(new PacketElement(name, (ushort)start, type, val, (ushort)end));
             return val;
         }
     }

@@ -7,58 +7,26 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="24" />
-            <RowDefinition Height="24" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <ComboBox x:Name="comboBox" Width="416" SelectionChanged="comboBox_SelectionChanged"/>
-            <GridSplitter Width="96"/>
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal">
+            <ComboBox x:Name="comboBox"
+                      Width="416"
+                      SelectionChanged="comboBox_SelectionChanged" />
+            <GridSplitter Width="96" />
             <Button x:Name="buttonSave"
-                Content="Save"
-                    Width="64" Click="buttonSave_Click"/>
+                    Content="Save"
+                    Width="64"
+                    Click="buttonSave_Click" />
             <Button x:Name="buttonLoad"
-                Content="Load"
-                    Width="64" Click="buttonLoad_Click" />
+                    Content="Load"
+                    Width="64"
+                    Click="buttonLoad_Click" />
         </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Label Content="#"
-                   VerticalContentAlignment="Center"
-                   HorizontalContentAlignment="Center"
-                   Width="32"
-                   Padding="0" />
-            <Label Content="Название переменной"
-                   VerticalContentAlignment="Center"
-                   HorizontalContentAlignment="Center"
-                   Width="128"
-                   Padding="0" />
-            <Label Content="Начало"
-                   VerticalContentAlignment="Center"
-                   HorizontalContentAlignment="Center"
-                   Width="128"
-                   Padding="0" />
-            <Label Content="Конец"
-                   VerticalContentAlignment="Center"
-                   HorizontalContentAlignment="Center"
-                   Width="128"
-                   Padding="0" />
-            <Label Content="Тип"
-                   VerticalContentAlignment="Center"
-                   HorizontalContentAlignment="Center"
-                   Width="128"
-                   Padding="0" />
-            <Label Content="Управление"
-                   VerticalContentAlignment="Center"
-                   HorizontalContentAlignment="Center"
-                   Width="96"
-                   Padding="0" />
-        </StackPanel>
-        <ScrollViewer Grid.Row="2">
-            <StackPanel x:Name="stackPanel"
-                        ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <Button x:Name="buttonAdd"
-                        Content="Добавить"
-                        Click="buttonAdd_Click" />
-            </StackPanel>
+        <ScrollViewer Grid.Row="1">
+            <TextBox x:Name="textBox">
+            </TextBox>
         </ScrollViewer>
         </Grid>
 </Window>

@@ -50,16 +50,14 @@ namespace Detrav.Teroniffer.Windows
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             PacketStructure ps = new PacketStructure(false);
-           
+            ps.script = textBox.Text;
             PacketStructureManager.setStructure(comboBox.SelectedItem, ps);
         }
 
         private void buttonLoad_Click(object sender, RoutedEventArgs e)
         {
-            while (stackPanel.Children.Count > 1)
-                stackPanel.Children.RemoveAt(0);
             PacketStructure ps = PacketStructureManager.getStructure(comboBox.SelectedItem);
-            
+            textBox.Text = ps.script;
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
