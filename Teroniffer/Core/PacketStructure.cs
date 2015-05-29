@@ -1,4 +1,5 @@
 ﻿using Detrav.TeraApi;
+using NLua;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,18 @@ namespace Detrav.Teroniffer.Core
 {
     class PacketStructure
     {
-        public List<PacketElement> elements = new List<PacketElement>();
+        List<PacketElement> elements = new List<PacketElement>();
         TeraPacketWithData packet;
+        public string script;
+        private Lua lua;
 
         public PacketStructure(bool _new)
         {
+            lua = new Lua();
+            lua.RegisterFunction("addElement", this, this.GetType().GetMethod("addElement"));
             if (_new)
             {
+                script = @"";
                 //elements.Add(new PacketElement() { name = "size", start = "0", type = "ushort" });
                 //elements.Add(new PacketElement() { name = "opCode", start = "2", type = "ushort" });
             }
@@ -32,6 +38,11 @@ namespace Detrav.Teroniffer.Core
                 sb.AppendFormat(" {0:X4}: {1,-24}| {2,-24} {3,-16}\n", i, packet.toHex(i, i + 8, " "), packet.toHex(i + 8, i + 16, " "), packet.toSingleString(i, i + 16));
             }
             sb.Append("\n");
+            //тут начало луа
+            this.packet = packet;
+            lua.DoString(script);
+            this.packet = null;
+            //тут конец
             foreach(var el in elements)
             {
                 sb.AppendFormat("{0:X4} - {1} : {2} : {3}\n", el.start, el.name, el.value, el.type);
@@ -42,7 +53,7 @@ namespace Detrav.Teroniffer.Core
         public object addElement(string name, ushort start,string type, ushort end = 0)
         {
             object val;
-            switch (el.type)
+            switch (type)
             {
                 case "byte": val = packet.toByte(start); break;
                 case "sbyte": val = packet.toSByte(start); break;
@@ -63,6 +74,7 @@ namespace Detrav.Teroniffer.Core
                 default: val = "[UNKNOWN]"; break;
             }
             elements.Add(new PacketElement(name, start, type, val, end));
+            return val;
         }
     }
 }
