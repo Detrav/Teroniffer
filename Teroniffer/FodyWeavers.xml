@@ -5,6 +5,8 @@
       KeraLua
       NLua
       Newtonsoft.Json
+      Microsoft.WindowsAPICodePack
+      Microsoft.WindowsAPICodePack.Shell
     </IncludeAssemblies>
     <PreloadOrder>
     </PreloadOrder>

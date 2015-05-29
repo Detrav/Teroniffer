@@ -1,4 +1,5 @@
 ﻿using Detrav.TeraApi.OpCodes;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,21 @@ namespace Detrav.Teroniffer.Windows
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            var cofd = new CommonOpenFileDialog();
+            cofd.IsFolderPicker = true;
+            cofd.InitialDirectory = System.IO.Path.GetFullPath(System.AppDomain.CurrentDomain.BaseDirectory);
+            if (cofd.ShowDialog() != CommonFileDialogResult.Ok)
+            {
+                Shutdown();
+                return;
+            }
+            Core.PacketStructureManager.assets = new Core.AssetManager(cofd.FileName);
             PacketCreator.setVersion(OpCodeVersion.P2805);
             mWindow = new MainWindow();
             MainWindow = mWindow;
             mWindow.Show();
             mWindow.close = true;
+
         }
     }
 }

@@ -14,21 +14,18 @@ namespace Detrav.Teroniffer.Core
     class AssetManager : IAssetManager
     {
 
-        static string assets = "assets";
-        string modName = "TeraModLoader";
+        static string FullPath = "";
 
-        public AssetManager(string modName = null)
+        public AssetManager(string path)
         {
-            if (modName != null)
-                this.modName = modName;
+            FullPath = path;
         }
-
 
         public void serialize(string path, object f, AssetType assetType = AssetType.relative)
         {
             string file = "";
             if (assetType == AssetType.relative)
-                file = Path.Combine(assets, modName, path);
+                file = Path.Combine(FullPath, path);
             else if (assetType == AssetType.global)
                 file = path;
             Logger.debug("Started deSerialize for {0}", file);
@@ -45,7 +42,7 @@ namespace Detrav.Teroniffer.Core
         {
             string file = "";
             if (assetType == AssetType.relative)
-                file = Path.Combine(assets, modName, path);
+                file = Path.Combine(FullPath, path);
             else if (assetType == AssetType.global)
                 file = path;
             Logger.debug("Started deSerialize for {0}", file);
@@ -68,9 +65,9 @@ namespace Detrav.Teroniffer.Core
             {
                 case AssetType.relative:
                     if (path != null)
-                        file = Path.Combine(assets, modName, path);
+                        file = Path.Combine(FullPath, path);
                     else
-                        file = Path.Combine(assets, modName, path);
+                        file = Path.Combine(FullPath, path);
                     break;
                 case AssetType.global:
                     file = path;
@@ -86,9 +83,9 @@ namespace Detrav.Teroniffer.Core
             {
                 case AssetType.relative:
                     if (path != null)
-                        file = Path.Combine(assets, modName, path);
+                        file = Path.Combine(FullPath, path);
                     else
-                        file = Path.Combine(assets, modName, path);
+                        file = Path.Combine(FullPath, path);
                     break;
                 case AssetType.global:
                     file = path;
@@ -100,7 +97,7 @@ namespace Detrav.Teroniffer.Core
 
         public object getOpenFileDialog()
         {
-            string root = Path.Combine(assets, modName);
+            string root = FullPath;
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.InitialDirectory = root;
             return ofd;
@@ -108,7 +105,7 @@ namespace Detrav.Teroniffer.Core
 
         public object getSaveFileDialog()
         {
-            string root = Path.Combine(assets, modName);
+            string root = FullPath;
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.InitialDirectory = root;
             return sfd;
@@ -117,7 +114,7 @@ namespace Detrav.Teroniffer.Core
 
         public string getMyFolder()
         {
-            return Path.GetFullPath(Path.Combine(assets, modName));
+            return FullPath;
         }
     }
 }
