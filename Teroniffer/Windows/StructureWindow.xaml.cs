@@ -56,6 +56,7 @@ namespace Detrav.Teroniffer.Windows
 
         private void buttonLoad_Click(object sender, RoutedEventArgs e)
         {
+            PacketStructureManager.loadStructure(comboBox.SelectedItem);
             PacketStructure ps = PacketStructureManager.getStructure(comboBox.SelectedItem);
             textBox.Text = ps.script;
         }
