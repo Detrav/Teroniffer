@@ -75,8 +75,9 @@ namespace Detrav.Teroniffer.Windows
                 byte[] data = new byte[1000];
                 for(int i = 0; i<data.Length;i+=2)
                 {
-                    data[i] = 0;
-                    data[i+1] = 1;
+                    byte[] bb = BitConverter.GetBytes((ushort)2);
+                    data[i] = bb[0];
+                    data[i + 1] = bb[1];
                 }
                 ps.parse(new TeraApi.TeraPacketWithData(data, TeraApi.PacketType.Any));
                 MessageBox.Show("OK");
