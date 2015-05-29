@@ -10,12 +10,14 @@ namespace Detrav.Teroniffer.Core
     class PacketStructure
     {
         public List<PacketElement> elements = new List<PacketElement>();
+        TeraPacketWithData packet;
+
         public PacketStructure(bool _new)
         {
             if (_new)
             {
-                elements.Add(new PacketElement() { name = "size", start = "0", type = "ushort" });
-                elements.Add(new PacketElement() { name = "opCode", start = "2", type = "ushort" });
+                //elements.Add(new PacketElement() { name = "size", start = "0", type = "ushort" });
+                //elements.Add(new PacketElement() { name = "opCode", start = "2", type = "ushort" });
             }
         }
         public PacketStructure() : this(false) { }
@@ -23,7 +25,6 @@ namespace Detrav.Teroniffer.Core
 
         public string parse(TeraPacketWithData packet)
         {
-            PacketElement[] list = getListElements(packet);
             StringBuilder sb = new StringBuilder();
             sb.Append("Offset 00 01 02 03 04 05 06 07 | 08 09 0A 0B 0C 0D 0E 0F  0123456789ABCDEF\n");
             for (int i = 0; i < packet.data.Length; i += 16)
@@ -31,133 +32,37 @@ namespace Detrav.Teroniffer.Core
                 sb.AppendFormat(" {0:X4}: {1,-24}| {2,-24} {3,-16}\n", i, packet.toHex(i, i + 8, " "), packet.toHex(i + 8, i + 16, " "), packet.toSingleString(i, i + 16));
             }
             sb.Append("\n");
-            foreach(var el in list)
+            foreach(var el in elements)
             {
                 sb.AppendFormat("{0:X4} - {1} : {2} : {3}\n", el.start, el.name, el.value, el.type);
             }
             return sb.ToString();
         }
 
-        private PacketElement[] getListElements(TeraPacketWithData packet)
+        public object addElement(string name, ushort start,string type, ushort end = 0)
         {
-            List<PacketElement> list = new List<PacketElement>();
-            for (int i = 0; i < elements.Count; i++)
-            {
-                PacketElement el = elements[i];
-                //if (el.name == "startArray")
-                    //i = getArray(packet, list, i);
-                //else
-                    list.Add(new PacketElement(el, getElementValue(packet, el).ToString()));
-            }
-            return list.ToArray();
-        }
-
-        /*
-        private int getArray(TeraPacketWithData packet, List<PacketElement> list, int num)
-        {
-            ushort startArray = getElementStart(packet,elements[num]);
-            ushort sizeArray = getElementEnd(packet,elements[num]);
-            int countArray = Convert.ToInt16(getElementValue(packet,elements[num]));
-            int j =0;
-            for (int i = num+1; i < elements.Count; i++,j++)
-            {
-                PacketElement el = elements[i];
-                string val = getElementValue(packet, el).ToString();
-                switch(el.name)
-                {
-                    case "startArray":
-                        i = getArray(packet, list, i);
-                        break;
-                    case "endArray":
-                        if(j<countArray) i = num;
-                        else return i + 1;
-                        break;
-                    default:
-                        list.Add(getArrayElement(packet,list,));
-                }
-            }
-            return int.MaxValue;
-        }
-
-        private int writeToStringBuilder(TeraPacketWithData packet, StringBuilder sb, int num)
-        {
-            for (int i = num; i < elements.Count; i++)
-            {
-                PacketElement el = elements[i];
-                string val = getElementValue(packet, el).ToString();
-                if (val == "startArray")
-                    sb.AppendFormat("{0:X4} - {1} : {2} : {3}\n", el.start, el.name, val, el.type);
-            }
-            return -1;
-        }
-
-        private int writeArrayToStringBuilder(TeraPacketWithData packet,StringBuilder sb,int num)
-        {
-            PacketElement el = elements[num];
-            string val = getElementValue(packet, el).ToString();
-            int count = Int32.Parse(val);
-            for(int j = 0;j<count;j++)
-            {
-                for(int i = num+1;i<elements.Count;i++)
-                {
-                    el = elements[i];
-                    val = getElementValue(packet, el).ToString();
-                    if (val == "endArray") break;
-                }
-            }
-        }*/
-
-        private ushort getElementEnd(TeraPacketWithData packet, PacketElement el)
-        {
-            if (el.end == null) return 0; if (el.end.Length == 0) return 0;
-            ushort result;
-            if (UInt16.TryParse(el.end, out result)) return result;
-            return (ushort)getElementValue(packet, el.end);
-        }
-
-        private object getElementValue(TeraPacketWithData packet, string p)
-        {
-            foreach (var el in elements)
-            {
-                if (el.name == p)
-                    return getElementValue(packet, el);
-            }
-            return null;
-        }
-
-        public object getElementValue(TeraPacketWithData packet, PacketElement el)
-        {
-            ushort start = getElementStart(packet, el);
-            ushort end = getElementEnd(packet, el);
+            object val;
             switch (el.type)
             {
-                case "byte": return packet.toByte(start);
-                case "sbyte": return packet.toSByte(start);
-                case "ushort": return packet.toUInt16(start);
-                case "short": return packet.toInt16(start);
-                case "uint": return packet.toUInt32(start);
-                case "int": return packet.toInt32(start);
-                case "ulong": return packet.toUInt64(start);
-                case "long": return packet.toInt64(start);
-                case "float": return packet.toSingle(start);
-                case "double": return packet.toDouble(start);
-                case "singleChar": return packet.toSingleChar(start);
-                case "doubleChar": return packet.toDoubleChar(start);
-                case "singleString": return packet.toSingleString(start, end);
-                case "doubleString": return packet.toDoubleString(start, end);
-                case "bool": return packet.toBoolean(start);
-                case "hex": return packet.toHex(start, end);
-                default: return "[UNKNOWN]";
+                case "byte": val = packet.toByte(start); break;
+                case "sbyte": val = packet.toSByte(start); break;
+                case "ushort": val = packet.toUInt16(start); break;
+                case "short": val = packet.toInt16(start); break;
+                case "uint": val = packet.toUInt32(start); break;
+                case "int": val = packet.toInt32(start); break;
+                case "ulong": val = packet.toUInt64(start); break;
+                case "long": val = packet.toInt64(start); break;
+                case "float": val = packet.toSingle(start); break;
+                case "double": val = packet.toDouble(start); break;
+                case "singleChar": val = packet.toSingleChar(start); break;
+                case "doubleChar": val = packet.toDoubleChar(start); break;
+                case "singleString": val = packet.toSingleString(start, end); break;
+                case "doubleString": val = packet.toDoubleString(start, end); break;
+                case "bool": val = packet.toBoolean(start); break;
+                case "hex": val = packet.toHex(start, end); break;
+                default: val = "[UNKNOWN]"; break;
             }
+            elements.Add(new PacketElement(name, start, type, val, end));
         }
-
-        private ushort getElementStart(TeraPacketWithData packet, PacketElement el)
-        {
-            if (el.start == null) return 0; if (el.start.Length == 0) return 0;
-            ushort result;
-            if (UInt16.TryParse(el.start, out result)) return result;
-            return (ushort)getElementValue(packet, el.start);
-        }
-
     }
 }

@@ -28,13 +28,13 @@ namespace Detrav.Teroniffer.Core
             "hex" 
         };
         public string name = null;
-        public string start = null;
-        public string end = null;
+        public ushort start = 0;
+        public ushort end = 0;
         public string type = null;
-        public string value = null;
+        public object value = null;
 
         public PacketElement() { }
-        public PacketElement(string name, string start, string end, string type,string value )
+        public PacketElement(string name, ushort start, string type, object value, ushort end = 0)
         {
             this.name = name;
             this.start = start;
