@@ -31,6 +31,7 @@ namespace Detrav.Teroniffer.Core
 
         public string parse(TeraPacketWithData packet)
         {
+            
             StringBuilder sb = new StringBuilder();
             sb.Append("Offset 00 01 02 03 04 05 06 07 | 08 09 0A 0B 0C 0D 0E 0F  0123456789ABCDEF\n");
             for (int i = 0; i < packet.data.Length; i += 16)
@@ -39,7 +40,7 @@ namespace Detrav.Teroniffer.Core
             }
             sb.Append("\n");
             //тут начало луа
-            this.packet = packet;
+            this.packet = packet; elements.Clear();
             lua.DoString(script);
             this.packet = null;
             //тут конец
