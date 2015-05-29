@@ -74,9 +74,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UserElements\StructureElementControl.xaml.cs">
-      <DependentUpon>StructureElementControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\AddPacketWindow.xaml.cs">
       <DependentUpon>AddPacketWindow.xaml</DependentUpon>
     </Compile>
@@ -89,10 +86,6 @@
     <Compile Include="Windows\StructureWindow.xaml.cs">
       <DependentUpon>StructureWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="UserElements\StructureElementControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\AddPacketWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +162,9 @@
   <ItemGroup>
     <EmbeddedResource Include="costura32\lua52.dll" />
     <EmbeddedResource Include="costura64\lua52.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UserElements\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -70,7 +70,8 @@ namespace Detrav.Teroniffer.Core
             if (packetStructures.TryGetValue((ushort)opCode, out ps))
                 return ps;
             ps = loadStructure(opCode);
-            if(ps==null) return new PacketStructure(true);
+            if(ps==null) ps = new PacketStructure(true);
+            packetStructures.Add((ushort)opCode, ps);
             return ps;
         }
     }

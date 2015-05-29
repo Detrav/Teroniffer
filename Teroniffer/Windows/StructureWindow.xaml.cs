@@ -1,6 +1,5 @@
 ﻿using Detrav.TeraApi.OpCodes;
 using Detrav.Teroniffer.Core;
-using Detrav.Teroniffer.UserElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,17 +44,13 @@ namespace Detrav.Teroniffer.Windows
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            stackPanel.Children.Insert(stackPanel.Children.Count - 1, new StructureElementControl(stackPanel.Children.Count - 1));
+            
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             PacketStructure ps = new PacketStructure(false);
-            ps.elements.Clear();
-            for(int i =0; i<stackPanel.Children.Count-1;i++)
-            {
-                ps.elements.Add(((StructureElementControl)stackPanel.Children[i]).getPacketElement());
-            }
+           
             PacketStructureManager.setStructure(comboBox.SelectedItem, ps);
         }
 
@@ -64,10 +59,7 @@ namespace Detrav.Teroniffer.Windows
             while (stackPanel.Children.Count > 1)
                 stackPanel.Children.RemoveAt(0);
             PacketStructure ps = PacketStructureManager.getStructure(comboBox.SelectedItem);
-            foreach(var el in ps.elements)
-            {
-                stackPanel.Children.Insert(stackPanel.Children.Count - 1, new StructureElementControl(stackPanel.Children.Count - 1,el));
-            }
+            
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

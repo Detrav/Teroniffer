@@ -18,10 +18,13 @@ namespace Detrav.Teroniffer.Core
         public PacketStructure(bool _new)
         {
             lua = new Lua();
+            //lua["parser"] = this;
             lua.RegisterFunction("addElement", this, this.GetType().GetMethod("addElement"));
             if (_new)
             {
-                script = @"";
+                script =
+                    "addElement(\"size\",0,\"ushort\",0)" + Environment.NewLine +
+                    "addElement(\"opCode\",2,\"ushort\",0)";
                 //elements.Add(new PacketElement() { name = "size", start = "0", type = "ushort" });
                 //elements.Add(new PacketElement() { name = "opCode", start = "2", type = "ushort" });
             }
@@ -41,6 +44,7 @@ namespace Detrav.Teroniffer.Core
             sb.Append("\n");
             //тут начало луа
             this.packet = packet; elements.Clear();
+            Console.WriteLine(lua.DoString("return 1+1"));
             lua.DoString(script);
             this.packet = null;
             //тут конец
