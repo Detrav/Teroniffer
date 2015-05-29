@@ -73,7 +73,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyFileInfo.cs" />
     <Compile Include="Core\AssetManager.cs" />
     <Compile Include="Core\FilterStructure.cs" />
     <Compile Include="Core\PacketElement.cs" />
