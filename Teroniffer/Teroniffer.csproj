@@ -37,6 +37,9 @@
   <PropertyGroup>
     <StartupObject>Detrav.Teroniffer.Windows.App</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="KeraLua">
       <HintPath>..\packages\NLua.1.3.2.1\lib\net45\KeraLua.dll</HintPath>
@@ -179,8 +182,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>"$(SolutionDir)SetAttrOfCSharpByGit.exe" "end" "$(ProjectDir)Properties\AssemblyInfo.cs"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Fody.1.26.1\build\Fody.targets" Condition="Exists('..\packages\Fody.1.26.1\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -189,6 +191,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Fody.1.26.1\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.26.1\build\Fody.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>"$(SolutionDir)SetAttrOfCSharpByGit.exe" "start" "$(SolutionDir)\" "$(ProjectDir)Properties\AssemblyInfo.cs"</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
