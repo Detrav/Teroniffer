@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Detrav.Teroniffer.Core
 {
@@ -45,7 +46,11 @@ namespace Detrav.Teroniffer.Core
             //тут начало луа
             this.packet = packet; elements.Clear();
             //Console.WriteLine(lua.DoString("return 1+1"));
-            lua.DoString(script);
+            try
+            {
+                lua.DoString(script);
+            }
+            catch (Exception e) { MessageBox.Show(e.Message); }
             this.packet = null;
             //тут конец
             foreach(var el in elements)
@@ -79,6 +84,7 @@ namespace Detrav.Teroniffer.Core
                 default: val = "[UNKNOWN]"; break;
             }
             elements.Add(new PacketElement(name, (ushort)start, type, val, (ushort)end));
+            if (val is string) return (val as string).Length;
             return val;
         }
     }

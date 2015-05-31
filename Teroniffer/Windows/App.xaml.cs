@@ -35,7 +35,7 @@ namespace Detrav.Teroniffer.Windows
                 return;
             }
             Core.PacketStructureManager.assets = new Core.AssetManager(cofd.FileName);
-            PacketCreator.setVersion(OpCodeVersion.P2805);
+            PacketCreator.setVersion(OpCodeVersion.P2904);
             mWindow = new MainWindow();
             MainWindow = mWindow;
             mWindow.Show();
