@@ -213,6 +213,12 @@ namespace Detrav.Teroniffer.Windows
                     packs = from p in packs where byteArrayContaints(p.getTeraPacket().data, bb) >= 0 select p;
                 }
                 catch { }
+                try
+                {
+                    string filter = textBoxStringFilter.Text;
+                    packs = from p in packs where p.opCode.ToString().IndexOf(filter) >= 0 select p;
+                }
+                catch { }
                 //Поиск будет отдельно
                 dataGrid.ItemsSource = null;
                 dataGrid.ItemsSource = packs.Skip(skip).Take(take);
@@ -252,7 +258,7 @@ namespace Detrav.Teroniffer.Windows
             if (f.blackList != null)
                 foreach (var el in f.blackList)
                     listBoxBlack.Items.Add(PacketCreator.getOpCode(Convert.ToUInt16(el)));
-
+            textBoxStringFilter.Text = f.filter;
         }
 
         private void buttonFilterExport_Click(object sender, RoutedEventArgs e)
@@ -267,7 +273,7 @@ namespace Detrav.Teroniffer.Windows
                 f.whiteList[i] = listBoxWhite.Items[i];
             for (int i = 0; i < f.blackList.Length; i++)
                 f.blackList[i] = listBoxBlack.Items[i];
-
+            f.filter = textBoxStringFilter.Text;
 
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.DefaultExt = ".json";

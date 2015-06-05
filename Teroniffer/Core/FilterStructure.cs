@@ -11,5 +11,6 @@ namespace Detrav.Teroniffer.Core
         public int indexRecvSend = 0;
         public object[] whiteList = null;
         public object[] blackList = null;
+        public string filter = null;
     }
 }

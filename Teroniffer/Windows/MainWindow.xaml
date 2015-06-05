@@ -118,6 +118,9 @@
                                     </ContextMenu>
                                 </ListBox.ContextMenu>
                             </ListBox>
+                            <Label Content="Фильтр по строке, пустой - нету фильтра:" />
+                            <TextBox x:Name="textBoxStringFilter" />
+                            <Separator />
                             <Button x:Name="buttonFilterImport"
                                     Click="buttonFilterImport_Click"
                                     Content="Импорт" />
