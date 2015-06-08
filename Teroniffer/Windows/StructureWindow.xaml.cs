@@ -29,6 +29,7 @@ namespace Detrav.Teroniffer.Windows
                 sortedList.Add(i.ToString(), i);
             comboBox.ItemsSource = null;
             comboBox.ItemsSource = sortedList.Values;
+            comboBox.SelectedIndex = 0;
         }
 
         public StructureWindow(object select)
@@ -65,7 +66,9 @@ namespace Detrav.Teroniffer.Windows
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            buttonLoad_Click(sender, new RoutedEventArgs());
+            PacketStructureManager.loadStructure(comboBox.SelectedItem);
+            PacketStructure ps = PacketStructureManager.getStructure(comboBox.SelectedItem);
+            textBox.Text = ps.script;
         }
 
         private void buttonTest_Click(object sender, RoutedEventArgs e)
