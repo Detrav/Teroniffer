@@ -52,6 +52,7 @@ namespace Detrav.Teroniffer.Windows
             PacketStructure ps = new PacketStructure(false);
             ps.script = textBox.Text;
             PacketStructureManager.setStructure(comboBox.SelectedItem, ps);
+            MessageBox.Show("Сохранено");
         }
 
         private void buttonLoad_Click(object sender, RoutedEventArgs e)
