@@ -60,6 +60,7 @@ namespace Detrav.Teroniffer.Windows
             PacketStructureManager.loadStructure(comboBox.SelectedItem);
             PacketStructure ps = PacketStructureManager.getStructure(comboBox.SelectedItem);
             textBox.Text = ps.script;
+            MessageBox.Show("Загруженно");
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -86,6 +87,21 @@ namespace Detrav.Teroniffer.Windows
             catch(Exception e1)
             {
                 MessageBox.Show(e1.Message);
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var result = MessageBox.Show("Хотите сохранить изменения в текущем пакете?", "Закрытие", MessageBoxButton.YesNoCancel);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    PacketStructure ps = new PacketStructure(false);
+                    ps.script = textBox.Text;
+                    PacketStructureManager.setStructure(comboBox.SelectedItem, ps);
+                    break;
+                case MessageBoxResult.No: break;
+                default: e.Cancel = true; break;
             }
         }
     }
