@@ -52,7 +52,7 @@ namespace Detrav.Teroniffer.Windows
         {
             PacketStructure ps = new PacketStructure(false);
             ps.script = textBox.Text;
-            PacketStructureManager.setStructure(comboBox.SelectedItem, ps);
+            PacketStructureManager.saveStructure(comboBox.SelectedItem, ps);
             MessageBox.Show("Сохранено");
         }
 
@@ -101,7 +101,7 @@ namespace Detrav.Teroniffer.Windows
                 case MessageBoxResult.Yes:
                     PacketStructure ps = new PacketStructure(false);
                     ps.script = textBox.Text;
-                    PacketStructureManager.setStructure(comboBox.SelectedItem, ps);
+                    PacketStructureManager.saveStructure(comboBox.SelectedItem, ps);
                     break;
                 case MessageBoxResult.No: break;
                 default: e.Cancel = true; break;

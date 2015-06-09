@@ -116,5 +116,16 @@ namespace Detrav.Teroniffer.Core
         {
             return FullPath;
         }
+
+
+        public void openFile(string path, OnOpenFile s, AssetType assetType = AssetType.relative)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void saveFile(string path, OnSaveFile s, AssetType assetType = AssetType.relative)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
