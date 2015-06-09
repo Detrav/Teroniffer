@@ -139,7 +139,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="mod.info" />
+    <None Include="mod.info">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -160,7 +162,9 @@
     <EmbeddedResource Include="assets\images\white.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Icon.jpg" />
+    <None Include="Icon.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="assets\images\calculator.png" />
