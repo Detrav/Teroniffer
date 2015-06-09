@@ -1,0 +1,1 @@
+{"script":"addElement(\"size\",0,\"ushort\");\r\naddElement(\"opCode\",2,\"ushort\");\r\naddElement(\"partyId\",4,\"ulong\");\r\naddElement(\"value\",12,\"uint\");\r\naddElement(\"max\",16,\"uint\");"}

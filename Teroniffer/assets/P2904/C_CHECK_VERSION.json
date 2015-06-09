@@ -1,0 +1,1 @@
+{"script":"local count,i;\r\naddElement(\"size\",0,\"ushort\");\r\naddElement(\"opCode\",2,\"ushort\");\r\ncount = addElement(\"count\",4,\"ushort\");\r\n\r\nfor i = 1,count,1 do\r\n  addElement(\"ver[\"..(i-1)..\"][0]\",6+(i-1)*12,\"uint\");\r\n  addElement(\"ver[\"..(i-1)..\"][1]\",10+(i-1)*12,\"uint\");\r\n  addElement(\"ver[\"..(i-1)..\"][2]\",14+(i-1)*12,\"uint\");\r\nend"}

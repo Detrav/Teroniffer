@@ -1,0 +1,1 @@
+{"script":"addElement(\"size\",0,\"ushort\");\r\naddElement(\"opCode\",2,\"ushort\");\r\naddElement(\"id\",10,\"ulong\");\r\naddElement(\"parentId\",85,\"ulong\");\r\naddElement(\"template\",44,\"uint\");\r\naddElement(\"header\",48,\"ushort\");"}

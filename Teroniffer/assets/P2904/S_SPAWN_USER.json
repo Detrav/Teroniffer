@@ -1,0 +1,1 @@
+{"script":"local nameStart;\r\naddElement(\"size\",0,\"ushort\");\r\naddElement(\"opCode\",2,\"ushort\");\r\nnameStart = addElement(\"nameStart\",8,\"ushort\");\r\naddElement(\"id\",34,\"ulong\");\r\naddElement(\"name\",nameStart,\"doubleString\",nameStart+30);"}

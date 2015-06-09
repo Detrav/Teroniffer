@@ -1,0 +1,1 @@
+{"script":"addElement(\"size\",0,\"ushort\");\r\naddElement(\"opCode\",2,\"ushort\");\r\naddElement(\"unk\",4,\"uint\");\r\naddElement(\"unk\",8,\"uint\");\r\naddElement(\"unk\",12,\"uint\");\r\naddElement(\"unk\",16,\"uint\");\r\n\r\naddElement(\"id\",20,\"ulong\");\r\naddElement(\"playerId\",28,\"ulong\");"}
