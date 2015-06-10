@@ -12,5 +12,7 @@
     "Author": "Езепчук Виталий Алексеевич",
     "URL": "https://github.com/Detrav",
     "Company": "HOME",
-    "Mod": "Teroniffer.exe"
+    "Mod": "Teroniffer.exe",
+    "_comment": "Any,P2805,P2904",
+    "RequiredOpCodeVersions": ["Any"]
 }
