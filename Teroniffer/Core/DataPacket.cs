@@ -14,6 +14,7 @@ namespace Detrav.Teroniffer.Core
         public PacketType type { get; set; }
         public ushort size { get; set; }
         public object opCode { get; set; }
+        public DateTime time { get; set; }
         private TeraPacketWithData packet;
         public DataPacket(int num, TeraPacketWithData packet)
         {
@@ -21,6 +22,7 @@ namespace Detrav.Teroniffer.Core
             this.num = num;
             this.type = packet.type;
             this.size = packet.size;
+            this.time = packet.time;
             this.opCode = PacketCreator.getOpCode(packet.opCode);
         }
 

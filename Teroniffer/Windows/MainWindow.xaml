@@ -4,7 +4,7 @@
         x:Class="Detrav.Teroniffer.Windows.MainWindow"
         Title="Teroniffer"
         Height="450"
-        Width="825" Closing="Window_Closing">
+        Width="1025" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -12,7 +12,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="350" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <TabControl x:Name="tabControl"
@@ -71,6 +71,9 @@
                                 <DataGridTextColumn Header="###"
                                                     Width="Auto"
                                                     Binding="{Binding num}" />
+                                <DataGridTextColumn Header="Time"
+                                                    Width="Auto"
+                                                    Binding="{Binding time}" />
                                 <DataGridTextColumn Header="Type"
                                                     Width="Auto"
                                                     Binding="{Binding type}" />
