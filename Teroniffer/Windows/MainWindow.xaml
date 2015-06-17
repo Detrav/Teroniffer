@@ -73,7 +73,7 @@
                                                     Binding="{Binding num}" />
                                 <DataGridTextColumn Header="Time"
                                                     Width="Auto"
-                                                    Binding="{Binding time}" />
+                                                    Binding="{Binding time, StringFormat=\{HH:mm:ss.fff\}}" />
                                 <DataGridTextColumn Header="Type"
                                                     Width="Auto"
                                                     Binding="{Binding type}" />
