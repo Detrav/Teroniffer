@@ -11,13 +11,15 @@ namespace Detrav.Teroniffer.Core
     {
         public PacketType type { get; set; }
         public byte[] data { get; set; }
+        public DateTime time { get; set; }
 
-        public SavedPacketData(PacketType type, byte[] data)
+        public SavedPacketData(PacketType type, byte[] data,DateTime time)
         {
             this.type = type;
             this.data = data;
+            this.time = time;
         }
 
-        public SavedPacketData() : this(PacketType.Any, null) { }
+        public SavedPacketData() : this(PacketType.Any, null, DateTime.MinValue) { }
     }
 }

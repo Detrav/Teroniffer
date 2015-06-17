@@ -88,7 +88,7 @@ namespace Detrav.Teroniffer.Windows
                 lock (packets)
                 {
                     foreach (var p in packets)
-                        list.Add(new SavedPacketData(p.type, p.getTeraPacket().data));
+                        list.Add(new SavedPacketData(p.type, p.getTeraPacket().data, p.time));
                 }
                 PacketStructureManager.assets.serialize(sfd.FileName, list.ToArray(), TeraApi.Interfaces.AssetType.global);
             }
@@ -406,7 +406,7 @@ namespace Detrav.Teroniffer.Windows
                 {
                     packets.Clear();
                     foreach(var el in list)
-                    packets.Add(new DataPacket(packets.Count,new TeraPacketWithData(el.data,el.type)));   
+                    packets.Add(new DataPacket(packets.Count,new TeraPacketWithData(el.data,el.type,el.time)));   
                 }
             }
         }
