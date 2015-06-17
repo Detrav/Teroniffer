@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{50B58CF9-892C-43FB-88CE-068B1D848457}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Detrav.Teroniffer</RootNamespace>
     <AssemblyName>Teroniffer</AssemblyName>
@@ -35,7 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Detrav.Teroniffer.Windows.App</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
@@ -68,15 +69,16 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="TeraApi">
-      <HintPath>..\..\TeraModLoader\TeraApi\bin\Debug\TeraApi.dll</HintPath>
+    <Reference Include="TeraApi, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TeraApi.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\AssetManager.cs" />
+    <None Include="Core\AssetManager.cs" />
     <Compile Include="Core\FilterStructure.cs" />
     <Compile Include="Core\PacketElement.cs" />
     <Compile Include="Core\PacketStructure.cs" />
@@ -91,9 +93,9 @@
     <Compile Include="Windows\AddPacketWindow.xaml.cs">
       <DependentUpon>AddPacketWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\App.xaml.cs">
+    <None Include="Windows\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
+    </None>
     <Compile Include="Windows\CalculatorWindow.xaml.cs">
       <DependentUpon>CalculatorWindow.xaml</DependentUpon>
     </Compile>
@@ -104,10 +106,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <ApplicationDefinition Include="Windows\App.xaml">
+    <None Include="Windows\App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </ApplicationDefinition>
+    </None>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
